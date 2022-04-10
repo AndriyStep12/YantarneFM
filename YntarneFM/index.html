@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" href="log.png">
+    <title>Yantarne.FM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .wrap {
+            width: 100%;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            /*            margin-bottom: 10vh;*/
+            /*
+            background: rgb(193, 175, 255);
+            background: -moz-linear-gradient(90deg, rgba(193, 175, 255, 1) 0%, rgba(0, 217, 255, 1) 50%, rgba(0, 255, 173, 1) 100%);
+            background: -webkit-linear-gradient(90deg, rgba(193, 175, 255, 1) 0%, rgba(0, 217, 255, 1) 50%, rgba(0, 255, 173, 1) 100%);
+            background: linear-gradient(90deg, rgba(193, 175, 255, 1) 0%, rgba(0, 217, 255, 1) 50%, rgba(0, 255, 173, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c1afff", endColorstr="#00ffad", GradientType=1);
+*/
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .trackName {
+            font-size: 25px;
+            font-family: monospace;
+            margin-top: 20px;
+            margin-bottom: -10px;
+        }
+
+        .plate {
+            width: 350px;
+            height: 350px;
+            background-image: url(https://pngimg.com/uploads/vinyl/vinyl_PNG21.png);
+            background-position: center;
+            background-size: cover;
+            /*            margin-right: 80px;*/
+            transition: 1s;
+            margin-right: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+            margin-right: 250px;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            left: 400px;
+        }
+
+        .music {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            height: 100%;
+            flex-direction: column-reverse;
+            margin-top: 30px;
+        }
+
+        .all {
+            display: flex;
+            flex-direction: row;
+            height: 20px;
+            align-items: center;
+            margin-bottom: 20px;
+            height: 30px;
+            justify-content: center;
+        }
+
+        #load {
+            height: 30px;
+            width: 30px;
+            margin-right: 10px;
+            margin-top: -14px;
+        }
+
+        .wrap2,
+        .wrap3 {
+            width: 100%;
+            height: 100vh;
+        }
+
+        /*
+        img {
+            width: 100%;
+            height: 100vh;
+        }
+*/
+
+        .item img {
+            filter: grayscale(1);
+            width: 100px;
+        }
+
+        .kolo {
+            width: 180px;
+            height: 180px;
+            display: flex;
+            border-radius: 50%;
+            background: #fff;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photoYNT,
+        .head_img {
+            width: 165px;
+            height: 67px;
+            background: url(yantarneFM.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        header {
+            height: 10vh;
+            width: 100%;
+            background-color: #fff;
+            padding: 10px 70px;
+        }
+
+        .play {
+            margin-top: 30px;
+        }
+
+        .end {
+            width: 95%;
+            height: 2px;
+            background: #F5F5F5;
+        }
+
+        .end_box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .serv {
+            width: 30px;
+            height: 30px;
+            margin: 10px;
+        }
+
+        .head {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .services {
+            margin-left: 50px;
+        }
+
+        .start {
+            margin-right: 80px;
+        }
+
+        a {
+            margin: 0 10px;
+        }
+
+        #youtube {
+            height: 43px;
+            width: 43px;
+        }
+
+        .later {
+            width: 35%;
+            height: 90vh;
+            /*            background-color: #000;*/
+            /*            border: 1px solid #000;*/
+            margin-right: 10px;
+            display: flex
+        }
+
+        .later_songs {
+            font-size: 20px;
+        }
+
+        li {
+            color: #000;
+            width: 100%;
+            height: 10vh;
+            background-color: #F9F9F9;
+            list-style-type: none;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 1.7vh;
+            margin-right: 16px;
+        }
+
+        .all p {
+            font-size: 30px;
+        }
+
+        .raz {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+        }
+
+        .raz input {
+            margin-top: 20px;
+            color: #000;
+        }
+
+        .fa-stop {
+            display: none;
+        }
+
+        @media screen and (max-width: 1285.60px) {
+            /*
+            .plate {
+                width: 300px;
+                height: 300px;
+                position: relative;
+                z-index: 10;
+            }
+
+            .music {}
+            
+            .booK{
+                width: 200px;
+                height: 200px;
+            }
+*/
+        }
+
+        @media screen and (max-width: 988px) {
+            .all p {
+                font-size: 25px;
+            }
+        }
+
+        @media screen and (max-width: 818px) {
+
+
+            .logo {
+                height: 55vh;
+            }
+
+            .ot {
+                flex-direction: row;
+            }
+
+            .wrap {
+                flex-direction: column;
+                display: flex;
+            }
+
+            .later {
+                flex-direction: row;
+                display: none;
+            }
+
+            .music__boX {
+                display: flex;
+            }
+
+            .head_a {
+                display: none;
+            }
+
+            .plate {
+                display: none
+            }
+
+            .book {
+                display: flex;
+            }
+
+            .booK {
+                width: 300px;
+                height: 300px;
+            }
+
+            .music {
+                width: 100%;
+                height: 20vh;
+                margin-left: -50px;
+            }
+
+            .booK {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                margin-left: 100px;
+            }
+
+            .ot {
+                flex-direction: row;
+            }
+        }
+
+        @media screen and (max-width: 1080px) {
+
+            .wrap2 {
+                height: 80vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 10vh;
+            }
+        }
+
+        @media screen and (max-width: 818px) {
+
+            .booK {
+                width: 200px;
+                height: 200px;
+            }
+
+            .btn-primary {
+                display: flex;
+            }
+
+            .logo {
+                height: 55vh;
+            }
+
+            .ot {
+                flex-direction: row;
+            }
+
+            .wrap {
+                flex-direction: column;
+                display: flex;
+            }
+
+            .later {
+                flex-direction: row;
+                display: none;
+            }
+
+            .music__boX {
+                display: flex;
+            }
+
+            .head_a {
+                display: none;
+            }
+
+            .plate {
+                display: none
+            }
+
+            .book {
+                display: flex;
+            }
+
+            .booK {
+                width: 300px;
+                height: 300px;
+            }
+
+            .music {
+                width: 100%;
+                height: 20vh;
+                margin-left: -50px;
+            }
+        }
+
+        /*
+        @media screen and(max-width: 771px) {
+            .logo {
+                height: 80%;
+                width: 100%;
+                margin-top: -20px;
+            }
+
+            .music {
+                height: 20%;
+                width: 100%;
+            }
+
+            .plate {
+                display: none
+            }
+
+            
+
+            .kolo {
+                width: 83px;
+                height: 83px;
+            }
+
+            .photoYNT {
+                width: 76px;
+                height: 31px;
+            }
+
+            .book {
+                display: flex;
+            }
+        }
+*/
+
+        @media screen and (max-width: 900px) {
+            .plate {
+                width: 260px;
+                height: 260px;
+            }
+
+            .kolo {
+                width: 117px;
+                height: 117px;
+            }
+
+            .photoYNT {
+                width: 107.25px;
+                height: 43.55px;
+            }
+
+            .wrap2 {
+                display: none
+            }
+        }
+
+        @media screen and (max-width: 775px) {
+            .plate {
+                width: 185.7142857142857px;
+                height: 185.7142857142857px;
+            }
+
+            .kolo {
+                width: 83.57142857142857px;
+                height: 83.57142857142857px;
+            }
+
+            .photoYNT {
+                width: 76.60714285714286px;
+                height: 31.10714285714286px;
+            }
+
+            .ot {
+                flex-direction: row;
+            }
+        }
+
+
+
+        .ot {
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 70%;
+            padding: 40px;
+        }
+
+        /*
+        
+        .later{
+            margin-left: 100px;
+        }
+*/
+        .music {
+            margin-left: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .logo {
+            width: 100%;
+        }
+
+        /*
+        
+        .raz{
+            width: 20%;
+            margin-left: 50px;
+        }
+    
+*/
+
+        .wrap2 img {
+            width: 100%;
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+        }
+
+        audio {
+            margin-top: 25px;
+        }
+
+        .book {
+            display: flex;
+        }
+
+        .booK {
+            width: 0px;
+            height: 0px;
+            border-radius: 0px 20px 20px 0;
+            margin-left: 100px;
+        }
+
+        .btn-primary {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            display: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #fff;
+            color: #000;
+            border: none;
+        }
+
+        .btn-primary img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .head_a {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .booK {
+            width: 350px;
+            height: 350px;
+            margin-left: -410px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        @media screen and (max-width: 1060px) {
+            /*
+            .booK {
+                width: 300px;
+                height: 300px;
+                margin-right: 100px;
+            }
+*/
+        }
+
+        @media screen and (max-width: 991px) {
+            .plate {
+                display: none;
+                margin-right: 400px;
+            }
+
+            .logo {
+                width: 80%;
+            }
+
+            .book {
+                display: flex;
+                width: 50%;
+                justify-content: center;
+                padding-left: 20px;
+            }
+
+            .ot {
+                margin-left: 50px;
+            }
+
+            .booK {
+                margin-left: 50px;
+                border-radius: 20px;
+            }
+        }
+
+        @media screen and (max-width: 818px) {
+            .ot {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .booK {
+                margin: 0;
+            }
+
+            .book {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /*
+            .music{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+*/
+        }
+
+        @media screen and (max-width: 653px) {
+            .booK {
+                width: 200px;
+                height: 200px;
+            }
+        }
+        .music__boX {
+            display: flex;
+        }
+
+        #soundcloud {
+            width: 50%;
+            height: 33vh;
+            background-color: #ff8035;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #instagram {
+            width: 50%;
+            height: 33vh;
+            background-color: #8034b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #facebook {
+            width: 50%;
+            height: 33vh;
+            background-color: #3b569e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #twitter {
+            width: 50%;
+            height: 33vh;
+            background-color: #2daae2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #youtubeBlock {
+            width: 100%;
+            height: 34vh;
+            background-color: #e42d26;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .row {
+            width: 100%;
+        }
+
+        #hrest {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .music__boX {
+            display: flex;
+            justify-content: flex-end;
+            width: 50%;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .start {
+            display: flex;
+            width: 50%;
+        }
+
+        .block_side{
+            width: 100%;
+            height: 60px;
+            background-color: rgb(237, 237, 237);
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .block_side a{
+            display: flex;
+            flex-direction: row;
+            text-decoration: none;
+        }
+        
+        a p{
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            color: #000;
+            margin-top: 10px;
+            margin-left: 5px;
+        }
+        
+        h5{
+            font-size: 30px;
+        }
+        
+        .block_H{
+            font-size: 80px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">More</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="block_side">
+                <a href="music_li.html">
+                    <img class="serv" src="music.png" alt="">
+                    <p class="sid">Минулі пісні</p>
+                </a>
+            </div>
+            <div class="block_side">
+                <a class="head_a" href="youtube.com">
+                    <img class="serv" src="insta.png" alt="">
+                    <p class="sid">Instagram</p>
+                </a>
+            </div>
+
+            <div class="block_side">
+                <a class="head_a" href="youtube.com">
+                    <img class="serv" id="youtube" src="youtube-logo.png" alt="">
+                    <p class="sid">Youtube</p>
+                </a>
+            </div>
+
+            <div class="block_side">
+                <a class="head_a" href="youtube.com">
+                    <img class="serv" src="facebook.png" alt="">
+                    <p class="sid">Facebook</p>
+                </a>
+            </div>
+            
+            <div class="block_side">
+                <a class="head_a" href="youtube.com">
+                    <img class="serv" src="soundclound.png" alt="">
+                    <p class="sid">Soundclound</p>
+                </a>
+            </div>
+
+           <div class="block_side">
+                <a class="head_a" href="youtube.com">
+                    <img class="serv" src="twitter.png" alt="">
+                    <p class="sid">Twitter</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--
+-->
+
+    <header>
+        <div class="head">
+            <div class="start">
+                <div class="head_img"></div>
+            </div>
+
+
+            <!--
+            <a class="head_a" href="youtube.com">
+                <img class="serv" src="insta.png" alt="">
+            </a>
+            <a class="head_a" href="youtube.com">
+                <img class="serv" id="youtube" src="youtube-logo.png" alt="">
+            </a>
+            <a class="head_a" href="youtube.com">
+                <img class="serv" src="facebook.png" alt="">
+            </a>
+-->
+
+            <div class="music__boX">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop" id="hrest">
+                    <img src="close.png" alt="">
+                </button>
+            </div>
+
+        </div>
+        <div class="end_box">
+            <div class="end"></div>
+        </div>
+
+    </header>
+
+    <div class="wrap">
+        <div class="ot">
+            <div class="logo">
+                <div class="plate" id="plate">
+                    <div class="kolo">
+                        <div class="photoYNT"></div>
+                    </div>
+                </div>
+                <div class="book">
+                    <img src="log.png" alt="" class="booK">
+                </div>
+            </div>
+            <div class="music">
+                <!-- RADIO PLAY -->
+
+                <div class="raz">
+                    <div id='rbcloud_mplayer15099' class="play"></div>
+                    <!--
+                    <audio controls>
+
+                        <source src="http://c28.radioboss.fm:8346/stream" type="audio/mpeg">
+                    </audio>
+-->
+                </div>
+                <!--
+            <div id='rbcloud_player3552'></div>
+    <script src='https://c28.radioboss.fm/w/player.js?u=https%3A%2F%2Fc28.radioboss.fm%3A18346%2Fstream&amp;wid=3552'></script>
+-->
+                <!-- RadioBOSS Cloud NowPlaying Widget (Start) -->
+
+                <div id='rbcloud_nowplaying12204' class="trackName"></div>
+                <div class="all">
+                    <div id="load" class="spinner-grow text-danger" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p>Зараз в ефірі</p>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="later">
+
+            <div id='rbcloud_recent13438' class="later_songs" data-cnt='7'></div>
+        </div>
+
+    </div>
+    <div class="wrap2">
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div id="img1" class="carousel-item active" id="" data-bs-interval="2000">
+                    <img src="photo/0%20(1995).JPG" class="d-block w-100" alt="...">
+                </div>
+                <div id="img2" class="carousel-item">
+                    <img src="photo/0%20(1371).JPG" class="d-block w-100" alt="...">
+                </div>
+                <div id="img3" class="carousel-item">
+                    <img src="photo/0%20(1987).JPG" class="d-block w-100" alt="...">
+                </div>
+                <div id="img4" class="carousel-item">
+                    <img src="photo/0%20(1994).JPG" class="d-block w-100" alt="...">
+                </div>
+                <div id="img5" class="carousel-item">
+                    <img src="photo/0%20(67).JPG" class="d-block w-100" alt="...">
+                </div>
+                <div id="img6" class="carousel-item">
+                    <img src="photo/0%20(853).JPG" class="d-block w-100" alt="...">
+                </div>
+                <div id="img7" class="carousel-item">
+                    <img src="photo/0%20(856).jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img8" class="carousel-item">
+                    <img src="photo/0%20(92).JPG" class="d-block w-100" alt="...">
+                </div>
+                <div id="img9" class="carousel-item">
+                    <img src="photo/0%20(93).JPG" class="d-block w-100" alt="...">
+                </div>
+                <div id="img10" class="carousel-item">
+                    <img src="photo/_DSC1506%5B1%5D.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img11" class="carousel-item">
+                    <img src="photo/DSC_2660.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img12" class="carousel-item">
+                    <img src="photo/DSC_4412.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img13" class="carousel-item">
+                    <img src="photo/DSC_4414.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img14" class="carousel-item">
+                    <img src="photo/DSC_4415.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img15" class="carousel-item">
+                    <img src="photo/DSC_4422.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img16" class="carousel-item">
+                    <img src="photo/DSC_4443.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img17" class="carousel-item">
+                    <img src="photo/DSC_4458.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img18" class="carousel-item">
+                    <img src="photo/DSC_6347.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img19" class="carousel-item">
+                    <img src="photo/DSC_6349.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img20" class="carousel-item">
+                    <img src="photo/DSC_6352.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img21" class="carousel-item">
+                    <img src="photo/DSC_6354.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img22" class="carousel-item">
+                    <img src="photo/DSC_6363.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img23" class="carousel-item">
+                    <img src="photo/DSC_6384.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img24" class="carousel-item">
+                    <img src="photo/DSC_8693.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div id="img25" class="carousel-item">
+                    <img src="photo/DSC_9510.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div id="img26" class="carousel-item">
+                    <img src="photo/DSC_9520.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div id="img27" class="carousel-item">
+                    <img src="photo/DSC_9529.JPG" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
+
+        <!--------------------------------------------------------------------------------------------------------------->
+
+        <div class="wrap3">
+            <div class="row">
+                <div class="block" id="facebook"><h2 class="block_H">Facebook</h2></div>
+                <div class="block" id="instagram"><h2 class="block_H">Instagram</h2></div>
+            </div>
+            <div class="row">
+                <div class="block" id="soundcloud"><h2 class="block_H">Soundcloud</h2></div>
+                <div class="block" id="twitter"><h2 class="block_H">Twitter</h2></div>
+            </div>
+
+            <div class="block" id="youtubeBlock"><h2 class="block_H">Youtube</h2></div>
+        </div>
+    </div>
+    <script src='https://c28.radioboss.fm/w/nowplaying.js?u=346&amp;wid=12204&amp;nl=1&amp;nnt=1'></script>
+    <script src='https://c28.radioboss.fm/w/mplayer.js?u=https%3A%2F%2Fc28.radioboss.fm%3A18346%2Fstream&amp;wid=15099&amp;pw=82&amp;ca=%23111111&amp;cg=%23b3b3b3'>
+    </script>
+
+    <script src='https://c28.radioboss.fm/w/recent.js?u=346&amp;wid=13438'></script>
+    <script>
+        let rotate = 0
+
+        setInterval(function() {
+            $('#plate').css('transform', 'rotate(' + rotate + 'deg)')
+            rotate = rotate + 1
+        }, 30)
+
+        //        alert($('.trackName').val())
+
+
+        fetch('https://c28.radioboss.fm/api/info/346?key=EZMN16CV3BV0')
+            .then(response => {
+                return (response.json());
+            })
+            .then(data => {
+                console.log(data);
+            });
+
+        let obj = document.createElement('audio');
+
+
+        $('.fa-play').click(function() {
+            $('.fas fa-play').css('display', 'none')
+        })
+
+
+        //        setInterval(function(){
+        obj.volume == $('#music_change').val() / 100
+        console.log(obj.volume)
+        //        }, 1000)
+
+        let developer = {
+            name: 'Andriy',
+            Sername: 'Stepaniak',
+            phone: '0680803866',
+            ITSchool: 'Creator IT Academy'
+        }
+
+    </script>
+</body>
+
+</html>
